@@ -1,5 +1,5 @@
 **AbstractUser vs AbstractBaseUser**
-The default user model in Django uses a username to identify a user during authentication uniquely. If you'd rather use an email address, you'll need to create a custom user model by subclassing AbstractUser or AbstractBaseUser.
+The default user model in Django uses a username to identify a user during authentication uniquely. If you'd instead use an email address, you must create a custom user model by subclassing AbstractUser or AbstractBaseUser.
 
 **Options:**
 1. AbstractUser: Use this option if you are happy with the existing fields on the user model and want to remove the username field.
@@ -12,6 +12,7 @@ The default user model in Django uses a username to identify a user during authe
 4. Update the admin
 
 
+**Follow the below steps for creating custom user**
 1. create a new users app
 2. Add the new app to the INSTALLED_APPS list in settings.py
 3. add below code to users/test.py
