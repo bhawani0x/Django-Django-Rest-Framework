@@ -77,16 +77,29 @@ class VoteViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         post_id = self.request.data.get('post')
         user_profile_id = self.request.data.get('user_profile')
+        choice_id = self.request.data.get('choice')
 
         try:
             post = Post.objects.get(pk=post_id)
             user_profile = UserProfile.objects.get(pk=user_profile_id)
+            choice = Choice.objects.get(pk=choice_id)
+
             existing_vote = Vote.objects.filter(post=post, user_profile=user_profile).first()
-            vote_count_instance, created = VoteCount.objects.get_or_create(post=post)
+            vote_count_instance, created = VoteCount.objects.get_or_create(post=post, choice=choice)
 
             if not existing_vote:
                 vote_count_instance.count += 1
                 vote_count_instance.save()
-
+                new_vote = serializer.save(post=post, choice=choice, user_profile=user_profile)
+                print("New vote added.")
+                return Response({"detail": "New vote added."}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"detail": "you cant vote"}, status=status.HTTP_200_OK)
         except Post.DoesNotExist:
             return Response({"detail": "The specified post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VoteCountViewSet(viewsets.ModelViewSet):
+    permission_classes = []
+    serializer_class = VoteCountSerializer
+    queryset = VoteCount.objects.all().order_by('post_id')

@@ -1,6 +1,7 @@
 from rest_framework import serializers, exceptions
-from Posts.models import Topic, Post, Like, Choice, Vote, LikeCount
+from Posts.models import *
 from UserManagement.api.serializers import UserProfileSerializer
+from django.db.models import Sum
 
 
 class TopicSerializer(serializers.ModelSerializer):
@@ -29,15 +30,26 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 
 class VoteSerializer(serializers.ModelSerializer):
-    votes_percentage = serializers.SerializerMethodField()
     choice_details = ChoiceSerializer(source='choice', read_only=True)
 
     class Meta:
         model = Vote
         fields = '__all__'
 
+
+class VoteCountSerializer(serializers.ModelSerializer):
+    votes_percentage = serializers.SerializerMethodField()
+
+    class Meta:
+        model = VoteCount
+        fields = '__all__'
+
     def get_votes_percentage(self, obj):
-        return obj.get_vote_percentage()
+        total_votes = VoteCount.objects.filter(post=obj.post).aggregate(Sum('count'))['count__sum'] or 0
+        if total_votes > 0:
+            percentage = (obj.count / total_votes) * 100
+            return round(percentage, 2)
+        return 0.00
 
 
 class PostSerializer(serializers.ModelSerializer):

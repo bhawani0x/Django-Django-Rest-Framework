@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Post, Vote, Like, Choice, Topic, LikeCount
+from .models import Post, Vote, Like, Choice, Topic, LikeCount, VoteCount
 # Register your models here.
 # admin.site.register(Post)
 admin.site.register(Vote)
 admin.site.register(Like)
 admin.site.register(LikeCount)
 admin.site.register(Topic)
+admin.site.register(VoteCount)
 
 
 class ChoiceInline(admin.TabularInline):

@@ -10,5 +10,6 @@ router.register(r'likes', LikeViewSet, basename='likes')
 router.register(r'likeCount', LikeCountViewSet, basename='likeCount')
 router.register(r'choices', ChoiceViewSet, basename='choices')
 router.register(r'votes', VoteViewSet, basename='votes')
+router.register(r'votesCount', VoteCountViewSet, basename='votesCount')
 
 urlpatterns = []+router.urls

@@ -72,7 +72,7 @@ class Vote(models.Model):
     #     return 0
 
     def __str__(self):
-        return self.choice.choice_text
+        return f"{self.user_profile} ==> {self.post} ==> {self.choice.choice_text}"
 
 
 class VoteCount(models.Model):
