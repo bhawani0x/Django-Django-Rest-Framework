@@ -9,9 +9,9 @@
  psql
 
 
- CREATE ROLE saleor WITH LOGIN PASSWORD 'saleor';
- CREATE DATABASE saleor;
- ALTER USER saleor WITH SUPERUSER;
+ CREATE ROLE poll_world WITH LOGIN PASSWORD 'poll_world';
+ CREATE DATABASE poll_world;
+ ALTER USER poll_world WITH SUPERUSER;
 
- GRANT ALL PRIVILEGES ON DATABASE saleor TO saleor;
- ALTER USER saleor CREATEDB;
+ GRANT ALL PRIVILEGES ON DATABASE poll_world TO poll_world;
+ ALTER USER poll_world CREATEDB;
