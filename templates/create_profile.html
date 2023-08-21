@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create Profile</h2>
+  <form method="post">
+    {% csrf_token %}
+<!--    <label for="username">Username:</label>-->
+<!--    <input type="text" id="username" name="username" value="{{ user.username }}" required readonly>-->
+      <br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+    <br>
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+      <option value="" disabled selected>Select gender</option>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+      <option value="O">Other</option>
+    </select>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <button type="submit">Create Profile</button>
+  </form>
+{% endblock %}
