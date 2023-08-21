@@ -80,7 +80,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pollwork_backend.urls'
+ROOT_URLCONF = 'pollWorld_backend.urls'
 
 TEMPLATES = [
     {
@@ -108,7 +108,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-WSGI_APPLICATION = 'pollwork_backend.wsgi.application'
+WSGI_APPLICATION = 'pollWorld_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
